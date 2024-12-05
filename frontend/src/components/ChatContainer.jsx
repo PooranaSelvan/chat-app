@@ -55,7 +55,7 @@ const ChatContainer = () => {
             ref={messageEndRef}
           >
             <div className=" chat-image avatar">
-              <div className="size-10 rounded-full border">
+              <div className="size-10 rounded-full">
                 <img
                   src={
                     message.senderId === authUser._id
@@ -66,12 +66,7 @@ const ChatContainer = () => {
                 />
               </div>
             </div>
-            <div className="chat-header mb-1">
-              <time className="text-xs opacity-50 ml-1">
-                {formatMessageTime(message.createdAt)}
-              </time>
-            </div>
-            <div className="chat-bubble flex flex-col">
+            <div className="chat-bubble rounded-xl flex flex-col">
               {message.image && (
                 <img
                   src={message.image}
@@ -80,6 +75,11 @@ const ChatContainer = () => {
                 />
               )}
               {message.text && <p>{message.text}</p>}
+            </div>
+            <div className="chat-header mb-1">
+              <time className="text-xs opacity-50 ml-1">
+                {formatMessageTime(message.createdAt)}
+              </time>
             </div>
           </div>
         ))}

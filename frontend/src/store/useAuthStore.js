@@ -76,15 +76,40 @@ export const useAuthStore = create((set, get) => ({
     set({ isUpdatingProfile: true });
     try {
       const res = await axiosInstance.put("/auth/updateProfile", data);
-      set({ authUser: res.data });
-      toast.success("Profile updated successfully");
+      if (res.data) {
+        set({ authUser: res.data });
+        toast.success("Profile updated successfully");
+      } else {
+        throw new Error("No data received from server");
+      }
     } catch (error) {
-      console.log("error in update profile:", error);
-      toast.error(error);
+      console.error("Error in update profile:", error);
+      toast.error(error.response?.data?.message || "Failed to update profile");
     } finally {
       set({ isUpdatingProfile: false });
     }
   },
+
+  deleteAccount: async () => {
+    const { authUser, disconnectSocket } = get();
+  
+    if (!authUser) {
+      toast.error("No authenticated user found");
+      return;
+    }
+  
+    try {
+      // Use the userId from authUser
+      await axiosInstance.delete(`/auth/delete/${authUser._id}`);
+      set({ authUser: null }); // Clear the authenticated user
+      disconnectSocket(); // Disconnect from socket if connected
+      toast.success("Account deleted successfully");
+    } catch (err) {
+      console.error("Error deleting account:", err);
+      toast.error(err.response?.data?.message || "Failed to delete account");
+    }
+  },
+  
 
   connectSocket: () => {
     const { authUser } = get();

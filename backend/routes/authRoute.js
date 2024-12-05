@@ -1,5 +1,5 @@
 import express from "express";
-import { signup, login, logout, updateProfile, checkAuth } from "../controllers/authController.js";
+import { signup, login, logout, updateProfile, checkAuth, deleteUser } from "../controllers/authController.js";
 import { protectRoute } from "../middleware/authMiddleware.js"
 
 
@@ -12,6 +12,8 @@ router.post("/logout", logout);
 router.put("/updateProfile", protectRoute, updateProfile);
 
 router.get("/check", protectRoute, checkAuth);
+
+router.delete("/delete/:userId", deleteUser);
 
 
 export default router;

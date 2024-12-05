@@ -47,6 +47,8 @@ const MessageInput = () => {
     }
   };
 
+  const isDisabled = !text.trim() && !imagePreview;
+
   return (
     <div className="p-4 w-full">
       {imagePreview && (
@@ -86,21 +88,13 @@ const MessageInput = () => {
             onChange={handleImageChange}
           />
 
-          <button
-            type="button"
-            className={`hidden sm:flex btn btn-circle
-                     ${imagePreview ? "text-emerald-500" : "text-zinc-400"}`}
-            onClick={() => fileInputRef.current?.click()}
-          >
+          <button type="button" className={`sm:flex items-center p-2 ${imagePreview ? "text-blue-500" : "text-zinc-400"}`}
+            onClick={() => fileInputRef.current?.click()}>
             <Image size={20} />
           </button>
         </div>
-        <button
-          type="submit"
-          className="btn btn-sm btn-circle"
-          disabled={!text.trim() && !imagePreview}
-        >
-          <Send size={22} />
+        <button id='btn-sub' type="submit" disabled={isDisabled}>
+          <Send size={22} className={`transition-colors ${isDisabled ? 'text-gray-400' : 'text-blue-500'}`} />
         </button>
       </form>
     </div>
