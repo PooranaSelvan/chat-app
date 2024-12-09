@@ -3,8 +3,10 @@ import { useAuthStore } from "../store/useAuthStore";
 import { useChatStore } from "../store/useChatStore";
 
 const ChatHeader = () => {
+
+  // getting these from store - zustand
   const { selectedUser, setSelectedUser } = useChatStore();
-  const { onlineUsers } = useAuthStore();
+  const { onlineUsers } = useAuthStore(); // -- to check the user in online or not.
 
   return (
     <div className="p-2.5 border-b border-base-300">

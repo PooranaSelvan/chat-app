@@ -14,6 +14,7 @@ const HomePage = () => {
           <div className="flex h-full rounded-lg overflow-hidden">
             <SideBar />
 
+            {/* if any user has been selected it shows thier chat else no chat. */}
             {!selectedUser ? <NoChat /> : <ChatContainer />}
           </div>
         </div>
