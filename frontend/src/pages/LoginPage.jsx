@@ -18,7 +18,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="h-screen grid">
+    <div className="h-screen grid w-full">
 
       <div className="flex flex-col justify-center items-center p-6 sm:p-12">
         <div className="w-full max-w-md space-y-8">
@@ -87,6 +87,15 @@ const LoginPage = () => {
           
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="py-4">
+        <p className="text-center text-sm">
+          &copy; 2021 All rights reserved <br />
+          For Testing Purposes: Email: <strong>test1@gmail.com</strong> , Password: <strong>test@01</strong> <br />
+          Dont Modify the Test User Data, It Will Reset After SomeTime
+        </p>
+      </footer>
     </div>
   );
 };
