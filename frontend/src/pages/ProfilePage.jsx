@@ -96,20 +96,23 @@ const ProfilePage = () => {
           <div className="flex flex-col items-center gap-4">
             <div className="relative">
               <img src={selectedImg || authUser.profilePic || "/avatar.png"} alt="Profile" className="size-32 rounded-full object-cover border-4"/>
-              <label htmlFor="avatar-upload" className={`absolute bottom-0 right-0 bg-base-content hover:scale-105 p-2 rounded-full cursor-pointer 
+              {formData.email === "test1@gmail.com" ? (
+                null
+              ) : (
+                <label htmlFor="avatar-upload" className={`absolute bottom-0 right-0 bg-base-content hover:scale-105 p-2 rounded-full cursor-pointer 
                   transition-all duration-200
                   ${isUpdatingProfile ? "animate-pulse pointer-events-none scale-150" : ""}
                 `}>
-                <Camera className="w-5 h-5 text-base-200" />
-                <input type="file" id="avatar-upload" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={isUpdatingProfile}/>
-              </label>
+                  <Camera className="w-5 h-5 text-base-200" />
+                  <input type="file" id="avatar-upload" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={isUpdatingProfile}/>
+                </label>
+              )}
             </div>
-            <p className="text-sm text-zinc-400">
-              {isUpdatingProfile ? "Uploading..." : "Click the camera icon to update your photo"}
-            </p>
-            <button onClick={handleRemoveProfilePicture} className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all duration-200">
-              Remove Profile Picture
-            </button>
+            {formData.email === "test1@gmail.com" ? (
+              null
+            ) : (
+              <button onClick={handleRemoveProfilePicture} className="text-red-500 hover:text-red-600">Remove Profile Picture</button>  
+            )}
           </div>
 
           <div className="space-y-6">
@@ -172,9 +175,12 @@ const ProfilePage = () => {
               {/* New Password */}
               <input type="password" name="newPassword" value={formData.newPassword} onChange={handleInputChange} placeholder="New Password" className="p-2 rounded-md border border-gray-600 bg-base-100"/>
               {/* Update Profile */}
-              <button type="submit" className="p-2 rounded-md border-none bg-blue-500 text-white cursor-pointer">
-                {isUpdatingProfile ? "Updating..." : "Update Profile"}
-              </button>
+              {formData.email === "test1@gmail.com" ? (
+                null ) : (
+                  <button type="submit" className="p-2 rounded-md border-none bg-blue-500 text-white cursor-pointer">
+                    {isUpdatingProfile ? "Updating..." : "Update Profile"}
+                  </button>
+                )}
             </form>
           </div>
         </div>

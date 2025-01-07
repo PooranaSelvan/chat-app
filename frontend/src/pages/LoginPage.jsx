@@ -93,7 +93,6 @@ const LoginPage = () => {
         <p className="text-center text-sm">
           &copy; 2021 All rights reserved <br />
           For Testing Purposes: Email: <strong>test1@gmail.com</strong> , Password: <strong>test@01</strong> <br />
-          Dont Modify the Test User Data, It Will Reset After SomeTime
         </p>
       </footer>
     </div>
